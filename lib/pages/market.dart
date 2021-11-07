@@ -1,7 +1,8 @@
-import 'package:crypto/pages/btc.dart';
-import 'package:crypto/pages/inr.dart';
-import 'package:crypto/pages/usdt.dart';
+import 'package:crypto_social/pages/btc.dart';
+import 'package:crypto_social/pages/inr.dart';
+import 'package:crypto_social/pages/usdt.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Market extends StatefulWidget {
@@ -22,13 +23,13 @@ class _MarketState extends State<Market> {
           bottom: const TabBar(
             tabs: [
               Tab(
-                text: 'INR',
+                icon: FaIcon(FontAwesomeIcons.rupeeSign),
               ),
               Tab(
-                text: 'BTC',
+                icon: FaIcon(FontAwesomeIcons.btc),
               ),
               Tab(
-                text: 'USDT',
+                icon: FaIcon(FontAwesomeIcons.dollarSign),
               ),
             ],
           ),

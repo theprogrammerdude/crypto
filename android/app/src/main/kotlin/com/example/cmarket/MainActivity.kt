@@ -1,4 +1,4 @@
-package com.example.cmarket
+package com.theprogrammerdude.cryptosocial
 
 import io.flutter.embedding.android.FlutterActivity
 

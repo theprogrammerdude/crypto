@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "158500033095",
+    "project_id": "cryptosocial-ec3bb",
+    "storage_bucket": "cryptosocial-ec3bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158500033095:android:30660b73ec49e856b51762",
+        "android_client_info": {
+          "package_name": "com.theprogrammerdude.cryptosocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158500033095-qnpinpl487asbr0ogokjr6gij7dqr5l9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTEUuDIR1nA3ahWjjlM1G-zw_NF6KbtfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158500033095-qnpinpl487asbr0ogokjr6gij7dqr5l9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

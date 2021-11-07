@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cmarket">
+    package="com.theprogrammerdude.cryptosocial">
    <application
         android:label="cmarket"
         android:icon="@mipmap/ic_launcher">
