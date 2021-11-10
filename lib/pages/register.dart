@@ -23,6 +23,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -38,11 +39,13 @@ class _RegisterState extends State<Register> {
     try {
       _authMethods.signup(email, password).then((value) {
         _dbMethods.addUser(
-            _firstNameController.text.toLowerCase(),
-            _lastNameController.text.toLowerCase(),
-            email,
-            value.user!.uid,
-            _phoneController.text);
+          _firstNameController.text.toLowerCase(),
+          _lastNameController.text.toLowerCase(),
+          email,
+          value.user!.uid,
+          _phoneController.text,
+          _usernameController.text,
+        );
 
         Navigator.pushAndRemoveUntil(
             context,
@@ -107,7 +110,7 @@ class _RegisterState extends State<Register> {
                   InternationalPhoneNumberInput(
                     onInputChanged: (PhoneNumber number) {
                       setState(() {
-                        phone = number.phoneNumber!;
+                        phone = number.isoCode! + number.phoneNumber!;
                       });
                     },
                     selectorConfig: const SelectorConfig(
@@ -124,6 +127,20 @@ class _RegisterState extends State<Register> {
                         signed: true, decimal: true),
                     inputBorder: const OutlineInputBorder(),
                   ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1),
+                      ),
+                      labelText: 'Username',
+                      labelStyle: TextStyle(color: Vx.black),
+                    ),
+                    controller: _usernameController,
+                  ).pSymmetric(v: 5),
                   TextFormField(
                     decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(

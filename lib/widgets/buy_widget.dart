@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:crypto_social/methods/api.dart';
 import 'package:crypto_social/methods/auth_methods.dart';
 import 'package:crypto_social/methods/db_methods.dart';
 import 'package:crypto_social/models/market_model.dart';
@@ -18,6 +21,7 @@ class BuyWidget extends StatefulWidget {
 }
 
 class _BuyWidgetState extends State<BuyWidget> {
+  final API _api = API();
   final DbMethods _dbMethods = DbMethods();
   final AuthMethods _authMethods = AuthMethods();
 
@@ -29,6 +33,7 @@ class _BuyWidgetState extends State<BuyWidget> {
       TextEditingController(text: '0');
 
   UserModel? _user;
+  num rate = 0;
 
   @override
   void initState() {
@@ -37,22 +42,34 @@ class _BuyWidgetState extends State<BuyWidget> {
       // print(_user);
     });
 
+    _api.convertRate(widget.coinData.quoteMarket).then((value) {
+      Map<String, dynamic> convertData = jsonDecode(value.body);
+
+      rate = convertData['result'];
+    });
+
     super.initState();
   }
 
   _buy() {
-    num.parse(_amountController.text) < _user!.amount
-        ? (num.parse(_amountController.text) != 0 &&
-                num.parse(_coinController.text) != 0)
+    num amount = num.parse(_amountController.text) * rate;
+
+    amount < _user!.amount
+        ? (amount != 0 && num.parse(_coinController.text) != 0)
             ? _dbMethods
-                .buy(widget.coinData, _authMethods.getUid(),
-                    num.parse(_coinController.text))
+                .buy(
+                widget.coinData,
+                _authMethods.getUid(),
+                num.parse(_coinController.text),
+                amount,
+              )
                 .then((value) {
+                _dbMethods.updateUserOnTrade(_user!, amount);
                 Navigator.pop(context);
                 showTopSnackBar(
                   context,
                   const CustomSnackBar.success(
-                    message: "Trade Placed Successfully 🎉🎉🎉",
+                    message: "Trade Placed Successfully",
                   ),
                 );
               }).catchError((err) {
@@ -60,7 +77,7 @@ class _BuyWidgetState extends State<BuyWidget> {
                 showTopSnackBar(
                   context,
                   const CustomSnackBar.error(
-                    message: "Something went wrong. 😓😓😓",
+                    message: "Something went wrong.",
                   ),
                 );
               })

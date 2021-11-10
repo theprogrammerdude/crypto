@@ -1,3 +1,5 @@
+import 'package:crypto_social/pages/history.dart';
+import 'package:crypto_social/pages/orders.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -22,6 +24,7 @@ class _PortfolioState extends State<Portfolio>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Vx.gray300,
       appBar: AppBar(
         title: 'Paper Portfolio'.text.make(),
         bottom: TabBar(
@@ -38,13 +41,9 @@ class _PortfolioState extends State<Portfolio>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          Container(
-            color: Colors.red,
-          ),
-          Container(
-            color: Colors.blue,
-          ),
+        children: const [
+          Orders(),
+          History(),
         ],
       ),
     );

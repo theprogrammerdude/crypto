@@ -18,8 +18,12 @@ class _MarketState extends State<Market> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: Vx.gray300,
         appBar: AppBar(
           title: 'Market'.text.make(),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          ],
           bottom: const TabBar(
             tabs: [
               Tab(

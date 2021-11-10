@@ -2,6 +2,7 @@ import 'package:avatars/avatars.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_social/methods/auth_methods.dart';
 import 'package:crypto_social/methods/db_methods.dart';
+import 'package:crypto_social/methods/post_methods.dart';
 import 'package:crypto_social/models/user_model.dart';
 import 'package:crypto_social/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,27 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final DbMethods _dbMethods = DbMethods();
   final AuthMethods _authMethods = AuthMethods();
+  final PostMethods _postMethods = PostMethods();
+
+  List trades = [];
+  List posts = [];
+
+  @override
+  void initState() {
+    _dbMethods.getAllTrades(_authMethods.getUid()).listen((event) {
+      for (var element in event.docs) {
+        trades.add(element);
+      }
+    });
+
+    _postMethods.getUserPosts(_authMethods.getUid()).listen((event) {
+      for (var element in event.docs) {
+        posts.add(element);
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +99,12 @@ class _ProfileState extends State<Profile> {
                         tiles: [
                           SettingsTile(
                             title: 'Balance',
-                            subtitle: _user.amount.toString(),
+                            subtitle: _user.amount.toStringAsFixed(3),
                             leading: const Icon(Icons.account_balance_wallet),
                           ),
                           SettingsTile(
                             title: 'Net Commission',
-                            subtitle: _user.netCommission.toString(),
+                            subtitle: _user.netCommission.toStringAsFixed(3),
                             leading: const FaIcon(FontAwesomeIcons.moneyBill),
                           ),
                           SettingsTile(
@@ -94,16 +116,16 @@ class _ProfileState extends State<Profile> {
                       ),
                       SettingsSection(
                         title: 'Profile Info',
-                        tiles: const [
+                        tiles: [
                           SettingsTile(
                             title: 'Posts',
-                            subtitle: '0',
-                            leading: Icon(Icons.article),
+                            subtitle: posts.length.toString(),
+                            leading: const Icon(Icons.article),
                           ),
                           SettingsTile(
                             title: 'Trades',
-                            subtitle: '0',
-                            leading: FaIcon(FontAwesomeIcons.chartLine),
+                            subtitle: trades.length.toString(),
+                            leading: const FaIcon(FontAwesomeIcons.chartLine),
                           ),
                         ],
                       ),

@@ -59,13 +59,6 @@ class _CoinListWidgetState extends State<CoinListWidget> {
                     .bold
                     .size(24)
                     .make(),
-                // DateFormat.yMMMd()
-                //     .format(DateTime.fromMillisecondsSinceEpoch(
-                //         marketData[index].at * 1000))
-                //     .toString()
-                //     .text
-                //     .make()
-                //     .objectCenterRight(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

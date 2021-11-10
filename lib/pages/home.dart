@@ -1,3 +1,4 @@
+import 'package:crypto_social/pages/create_post.dart';
 import 'package:crypto_social/pages/feed.dart';
 import 'package:crypto_social/pages/market.dart';
 import 'package:crypto_social/pages/portfolio.dart';
@@ -43,10 +44,18 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CreatePost()),
+        ),
+        child: const Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _pageIndex,
-        iconSize: 30,
+        iconSize: 25,
         onTap: onTabTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

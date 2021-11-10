@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     final AuthMethods _authMethods = AuthMethods();
 
     return MaterialApp(
-      title: 'Market',
+      title: 'Crypto Social',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.varelaRound().fontFamily,
