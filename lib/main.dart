@@ -1,6 +1,6 @@
-import 'package:crypto_social/methods/auth_methods.dart';
-import 'package:crypto_social/pages/home.dart';
-import 'package:crypto_social/pages/login.dart';
+import 'package:crypto_plus/methods/auth_methods.dart';
+import 'package:crypto_plus/pages/home.dart';
+import 'package:crypto_plus/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     final AuthMethods _authMethods = AuthMethods();
 
     return MaterialApp(
-      title: 'Crypto Social',
+      title: 'Crypto+',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.varelaRound().fontFamily,

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:crypto_social/methods/api.dart';
-import 'package:crypto_social/models/market_model.dart';
-import 'package:crypto_social/models/trade_model.dart';
-import 'package:crypto_social/widgets/square_off_widget.dart';
+import 'package:crypto_plus/methods/api.dart';
+import 'package:crypto_plus/models/market_model.dart';
+import 'package:crypto_plus/models/trade_model.dart';
+import 'package:crypto_plus/widgets/square_off_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart';

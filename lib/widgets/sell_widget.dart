@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:crypto_social/methods/api.dart';
-import 'package:crypto_social/methods/auth_methods.dart';
-import 'package:crypto_social/methods/db_methods.dart';
-import 'package:crypto_social/models/market_model.dart';
-import 'package:crypto_social/models/user_model.dart';
+import 'package:crypto_plus/methods/api.dart';
+import 'package:crypto_plus/methods/auth_methods.dart';
+import 'package:crypto_plus/methods/db_methods.dart';
+import 'package:crypto_plus/models/market_model.dart';
+import 'package:crypto_plus/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';

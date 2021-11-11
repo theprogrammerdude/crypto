@@ -1,5 +1,5 @@
-import 'package:crypto_social/models/market_model.dart';
-import 'package:crypto_social/widgets/bottom_widget.dart';
+import 'package:crypto_plus/models/market_model.dart';
+import 'package:crypto_plus/widgets/bottom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +17,7 @@ class CoinListWidget extends StatefulWidget {
 
 class _CoinListWidgetState extends State<CoinListWidget> {
   openBottomSheet(String baseMarket, String quoteMarket) {
-    showMaterialModalBottomSheet(
+    showBarModalBottomSheet(
       enableDrag: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

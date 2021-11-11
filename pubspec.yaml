@@ -1,4 +1,4 @@
-name: crypto_social
+name: crypto_plus
 description: Crypto Market Watch Social App.
 
 # The following line prevents the package from being accidentally published to
@@ -28,13 +28,16 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   avatars: ^2.2.0
+  cached_network_image: ^3.1.0+1
   candlesticks: ^1.1.1
   cloud_firestore: ^3.1.0
+  comment_tree: ^0.3.0
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.2.0
   firebase_core: ^1.10.0
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.2
   flutter_libphonenumber: ^1.2.1
   flutter_reaction_button: ^2.0.0+1
   flutter_signin_button: ^2.0.0
@@ -57,11 +60,17 @@ dependencies:
   top_snackbar_flutter: ^1.0.1
   uuid: ^3.0.5
   velocity_x: ^3.3.0
+  webview_flutter: ^2.3.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

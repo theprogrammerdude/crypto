@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto_social/methods/auth_methods.dart';
-import 'package:crypto_social/methods/db_methods.dart';
-import 'package:crypto_social/models/trade_model.dart';
-import 'package:crypto_social/widgets/portfolio_bottom_widget.dart';
+import 'package:crypto_plus/methods/auth_methods.dart';
+import 'package:crypto_plus/methods/db_methods.dart';
+import 'package:crypto_plus/models/trade_model.dart';
+import 'package:crypto_plus/widgets/portfolio_bottom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -20,7 +20,7 @@ class _OrdersState extends State<Orders> {
   final AuthMethods _authMethods = AuthMethods();
 
   openBottomSheet(TradeModel trade) {
-    showMaterialModalBottomSheet(
+    showBarModalBottomSheet(
       enableDrag: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -169,11 +169,7 @@ class _OrdersState extends State<Orders> {
           );
         }
 
-        return 'You don\'t have any orders yet!'
-            .text
-            .size(20)
-            .make()
-            .centered();
+        return Image.asset('assets/404.png').centered();
       },
     );
   }

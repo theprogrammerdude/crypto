@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto_social/methods/auth_methods.dart';
-import 'package:crypto_social/methods/db_methods.dart';
-import 'package:crypto_social/models/history_model.dart';
+import 'package:crypto_plus/methods/auth_methods.dart';
+import 'package:crypto_plus/methods/db_methods.dart';
+import 'package:crypto_plus/models/history_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -189,11 +189,7 @@ class _HistoryState extends State<History> {
           );
         }
 
-        return 'You haven\'t made any orders yet!'
-            .text
-            .size(20)
-            .make()
-            .centered();
+        return Image.asset('assets/404.png').centered();
       },
     );
   }

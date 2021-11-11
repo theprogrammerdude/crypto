@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto_social/models/market_model.dart';
-import 'package:crypto_social/models/trade_model.dart';
-import 'package:crypto_social/models/user_model.dart';
+import 'package:crypto_plus/models/market_model.dart';
+import 'package:crypto_plus/models/trade_model.dart';
+import 'package:crypto_plus/models/user_model.dart';
 import 'package:uuid/uuid.dart';
 
 class DbMethods {
@@ -17,9 +17,9 @@ class DbMethods {
       'email': email,
       'username': username,
       'createdAt': DateTime.now().millisecondsSinceEpoch,
-      'amount': 10000,
+      'amount': 100000000,
       'netCommission': 0,
-      'commission': .002,
+      'commission': .02,
       'phone': phone.trim()
     });
   }

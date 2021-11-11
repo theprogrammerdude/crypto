@@ -1,7 +1,7 @@
-import 'package:crypto_social/methods/auth_methods.dart';
-import 'package:crypto_social/methods/db_methods.dart';
-import 'package:crypto_social/pages/home.dart';
-import 'package:crypto_social/pages/login.dart';
+import 'package:crypto_plus/methods/auth_methods.dart';
+import 'package:crypto_plus/methods/db_methods.dart';
+import 'package:crypto_plus/pages/home.dart';
+import 'package:crypto_plus/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -175,6 +175,7 @@ class _RegisterState extends State<Register> {
               ),
               RoundedLoadingButton(
                 controller: _btnController,
+                width: MediaQuery.of(context).size.width * .9,
                 onPressed: () =>
                     _register(_emailController.text, _passwordController.text),
                 color: Colors.deepPurple,
@@ -194,7 +195,7 @@ class _RegisterState extends State<Register> {
                               builder: (context) => const Login())),
                       child:
                           'Go to Login'.text.size(18).make().pSymmetric(v: 15))
-                  .wPCT(context: context, widthPCT: 75),
+                  .wPCT(context: context, widthPCT: 90),
             ],
           ).p12(),
         ),

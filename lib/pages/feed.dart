@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto_social/methods/post_methods.dart';
-import 'package:crypto_social/models/post_model.dart';
-import 'package:crypto_social/widgets/post_widget.dart';
+import 'package:crypto_plus/methods/post_methods.dart';
+import 'package:crypto_plus/models/post_model.dart';
+import 'package:crypto_plus/widgets/post_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -21,6 +21,12 @@ class _FeedState extends State<Feed> {
       backgroundColor: Vx.gray300,
       appBar: AppBar(
         title: 'Feed'.text.make(),
+        // actions: [
+        //   IconButton(
+        //       onPressed: () => Navigator.push(context,
+        //           MaterialPageRoute(builder: (context) => const News())),
+        //       icon: const Icon(Icons.article_outlined)),
+        // ],
       ),
       body: StreamBuilder(
         stream: _postMethods.getAllPosts(),

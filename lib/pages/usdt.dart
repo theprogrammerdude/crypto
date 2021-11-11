@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:crypto_social/methods/api.dart';
-import 'package:crypto_social/models/market_model.dart';
-import 'package:crypto_social/widgets/coinlist_widget.dart';
+import 'package:crypto_plus/methods/api.dart';
+import 'package:crypto_plus/models/market_model.dart';
+import 'package:crypto_plus/widgets/coinlist_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 

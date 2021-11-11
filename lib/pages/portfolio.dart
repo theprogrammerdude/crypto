@@ -1,5 +1,5 @@
-import 'package:crypto_social/pages/history.dart';
-import 'package:crypto_social/pages/orders.dart';
+import 'package:crypto_plus/pages/history.dart';
+import 'package:crypto_plus/pages/orders.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 

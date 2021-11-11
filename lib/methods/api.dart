@@ -79,4 +79,12 @@ class API {
 
     return res;
   }
+
+  Future<http.Response> getNews(String category) async {
+    var url = Uri.parse(
+        'https://finnhub.io/api/v1/news?category=$category&token=c662v2iad3id7qljhkhg');
+    var res = await http.get(url);
+
+    return res;
+  }
 }

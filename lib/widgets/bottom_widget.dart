@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:crypto_social/methods/api.dart';
-import 'package:crypto_social/models/market_model.dart';
-import 'package:crypto_social/widgets/buy_widget.dart';
-import 'package:crypto_social/widgets/sell_widget.dart';
+import 'package:crypto_plus/methods/api.dart';
+import 'package:crypto_plus/models/market_model.dart';
+import 'package:crypto_plus/widgets/buy_widget.dart';
+import 'package:crypto_plus/widgets/sell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -159,20 +159,18 @@ class _BottomWidgetState extends State<BottomWidget>
                   ),
                 ],
               ),
-              Flexible(
-                child: SizedBox(
-                  height: 250,
-                  child: TabBarView(
-                    controller: _controller,
-                    children: [
-                      SellWidget(
-                        coinData: _coinData!,
-                      ).pSymmetric(v: 10),
-                      BuyWidget(
-                        coinData: _coinData!,
-                      ).pSymmetric(v: 10)
-                    ],
-                  ),
+              SizedBox(
+                height: 250,
+                child: TabBarView(
+                  controller: _controller,
+                  children: [
+                    SellWidget(
+                      coinData: _coinData!,
+                    ).pSymmetric(v: 10),
+                    BuyWidget(
+                      coinData: _coinData!,
+                    ).pSymmetric(v: 10)
+                  ],
                 ),
               ),
             ],

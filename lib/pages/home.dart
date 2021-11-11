@@ -1,8 +1,8 @@
-import 'package:crypto_social/pages/create_post.dart';
-import 'package:crypto_social/pages/feed.dart';
-import 'package:crypto_social/pages/market.dart';
-import 'package:crypto_social/pages/portfolio.dart';
-import 'package:crypto_social/pages/profile.dart';
+import 'package:crypto_plus/pages/create_post.dart';
+import 'package:crypto_plus/pages/feed.dart';
+import 'package:crypto_plus/pages/market.dart';
+import 'package:crypto_plus/pages/portfolio.dart';
+import 'package:crypto_plus/pages/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

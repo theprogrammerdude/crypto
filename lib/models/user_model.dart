@@ -10,6 +10,7 @@ class UserModel {
   num amount;
   num netCommission;
   num commission;
+  int createdAt;
 
   UserModel({
     required this.firstName,
@@ -21,6 +22,7 @@ class UserModel {
     required this.amount,
     required this.netCommission,
     required this.commission,
+    required this.createdAt,
   });
 
   UserModel copyWith({
@@ -33,6 +35,7 @@ class UserModel {
     num? amount,
     num? netCommission,
     num? commission,
+    int? createdAt,
   }) {
     return UserModel(
       firstName: firstName ?? this.firstName,
@@ -44,6 +47,7 @@ class UserModel {
       amount: amount ?? this.amount,
       netCommission: netCommission ?? this.netCommission,
       commission: commission ?? this.commission,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -58,6 +62,7 @@ class UserModel {
       'amount': amount,
       'netCommission': netCommission,
       'commission': commission,
+      'createdAt': createdAt,
     };
   }
 
@@ -72,6 +77,7 @@ class UserModel {
       amount: map['amount'],
       netCommission: map['netCommission'],
       commission: map['commission'],
+      createdAt: map['createdAt'],
     );
   }
 
@@ -82,7 +88,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, uid: $uid, username: $username, phone: $phone, amount: $amount, netCommission: $netCommission, commission: $commission)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, uid: $uid, username: $username, phone: $phone, amount: $amount, netCommission: $netCommission, commission: $commission, createdAt: $createdAt)';
   }
 
   @override
@@ -98,7 +104,8 @@ class UserModel {
         other.phone == phone &&
         other.amount == amount &&
         other.netCommission == netCommission &&
-        other.commission == commission;
+        other.commission == commission &&
+        other.createdAt == createdAt;
   }
 
   @override
@@ -111,6 +118,7 @@ class UserModel {
         phone.hashCode ^
         amount.hashCode ^
         netCommission.hashCode ^
-        commission.hashCode;
+        commission.hashCode ^
+        createdAt.hashCode;
   }
 }

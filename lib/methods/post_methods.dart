@@ -30,4 +30,19 @@ class PostMethods {
   Stream<QuerySnapshot> getUserPosts(String uid) {
     return _db.doc('users/$uid').collection('posts').snapshots();
   }
+
+  Future addComment(String comment, String uid, String postId) {
+    String commentId = uuid.v4().split('-').join();
+
+    return _db.doc('posts/$postId').collection('comments').doc(commentId).set({
+      'comment': comment,
+      'uid': uid,
+      'commentId': commentId,
+      'at': DateTime.now().millisecondsSinceEpoch
+    });
+  }
+
+  Stream<QuerySnapshot> getPostComments(String postId) {
+    return _db.doc('posts/$postId').collection('comments').snapshots();
+  }
 }
