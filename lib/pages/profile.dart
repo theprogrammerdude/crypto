@@ -99,15 +99,6 @@ class _ProfileState extends State<Profile> {
                                             labelStyle:
                                                 TextStyle(color: Vx.black),
                                           ),
-                                          onTap: () =>
-                                              _firstNameController.selection =
-                                                  TextSelection(
-                                                      baseOffset: 0,
-                                                      extentOffset:
-                                                          _firstNameController
-                                                              .value
-                                                              .text
-                                                              .length),
                                           keyboardType: TextInputType.name,
                                           controller: _firstNameController
                                             ..text = _user.firstName
@@ -126,22 +117,40 @@ class _ProfileState extends State<Profile> {
                                             labelStyle:
                                                 TextStyle(color: Vx.black),
                                           ),
-                                          onTap: () =>
-                                              _lastNameController.selection =
-                                                  TextSelection(
-                                                      baseOffset: 0,
-                                                      extentOffset:
-                                                          _lastNameController
-                                                              .value
-                                                              .text
-                                                              .length),
                                           keyboardType: TextInputType.name,
                                           controller: _lastNameController
                                             ..text = _user.lastName
                                                 .allWordsCapitilize(),
                                         ).pSymmetric(v: 5),
                                         ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            if (_firstNameController
+                                                    .text.isNotEmpty &&
+                                                _lastNameController
+                                                    .text.isNotEmpty) {
+                                              _dbMethods
+                                                  .updateName(
+                                                      _firstNameController.text
+                                                          .toLowerCase(),
+                                                      _lastNameController.text
+                                                          .toLowerCase(),
+                                                      _authMethods.getUid())
+                                                  .then((value) {
+                                                Navigator.pop(context);
+                                                VxToast.show(context,
+                                                    msg:
+                                                        'Name Updated Successfully.',
+                                                    position:
+                                                        VxToastPosition.center);
+                                              });
+                                            } else {
+                                              VxToast.show(context,
+                                                  msg:
+                                                      'First/Last name can\'t be empty.',
+                                                  position:
+                                                      VxToastPosition.center);
+                                            }
+                                          },
                                           child: 'Update'
                                               .text
                                               .size(20)
@@ -191,18 +200,24 @@ class _ProfileState extends State<Profile> {
                                             labelStyle:
                                                 TextStyle(color: Vx.black),
                                           ),
-                                          onTap: () => _emailController
-                                                  .selection =
-                                              TextSelection(
-                                                  baseOffset: 0,
-                                                  extentOffset: _emailController
-                                                      .value.text.length),
                                           keyboardType: TextInputType.name,
                                           controller: _emailController
                                             ..text = _user.email,
                                         ).pSymmetric(v: 5),
                                         ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () => _dbMethods
+                                              .updateEmail(
+                                                  _emailController.text
+                                                      .toLowerCase(),
+                                                  _authMethods.getUid())
+                                              .then((value) {
+                                            Navigator.pop(context);
+                                            VxToast.show(context,
+                                                msg:
+                                                    'Email Updated Successfully.',
+                                                position:
+                                                    VxToastPosition.center);
+                                          }),
                                           child: 'Update'
                                               .text
                                               .size(20)

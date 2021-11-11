@@ -117,4 +117,14 @@ class DbMethods {
   Stream<QuerySnapshot> getHistory(String uid) {
     return _db.doc('users/$uid').collection('history').snapshots();
   }
+
+  Future updateEmail(String email, String uid) {
+    return _db.doc('users/$uid').update({'email': email});
+  }
+
+  Future updateName(String firstName, String lastName, String uid) {
+    return _db
+        .doc('users/$uid')
+        .update({'firstName': firstName, 'lastName': lastName});
+  }
 }
