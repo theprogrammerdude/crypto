@@ -76,7 +76,11 @@ class DbMethods {
   }
 
   Stream<QuerySnapshot> getAllTrades(String uid) {
-    return _db.doc('users/$uid').collection('trades').snapshots();
+    return _db
+        .doc('users/$uid')
+        .collection('trades')
+        .orderBy('at', descending: true)
+        .snapshots();
   }
 
   Future squareOff(TradeModel trade, MarketModel coinData, String uid,
@@ -115,7 +119,11 @@ class DbMethods {
   }
 
   Stream<QuerySnapshot> getHistory(String uid) {
-    return _db.doc('users/$uid').collection('history').snapshots();
+    return _db
+        .doc('users/$uid')
+        .collection('history')
+        .orderBy('at', descending: true)
+        .snapshots();
   }
 
   Future updateEmail(String email, String uid) {

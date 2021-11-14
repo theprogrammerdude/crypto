@@ -57,6 +57,7 @@ class _HomeState extends State<Home> {
         currentIndex: _pageIndex,
         iconSize: 25,
         onTap: onTabTapped,
+        enableFeedback: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),

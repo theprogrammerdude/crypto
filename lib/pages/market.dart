@@ -1,4 +1,5 @@
 import 'package:crypto_plus/pages/btc.dart';
+import 'package:crypto_plus/pages/forex.dart';
 import 'package:crypto_plus/pages/inr.dart';
 import 'package:crypto_plus/pages/usdt.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,10 @@ class _MarketState extends State<Market> {
         appBar: AppBar(
           title: 'Market'.text.make(),
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+            IconButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Forex())),
+                icon: const FaIcon(FontAwesomeIcons.exchangeAlt)),
           ],
           bottom: const TabBar(
             tabs: [

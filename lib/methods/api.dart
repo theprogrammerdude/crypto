@@ -57,8 +57,8 @@ class API {
     return res;
   }
 
-  Future<http.Response> forexRates() async {
-    var url = Uri.parse('https://api.exchangerate.host/latest?base=INR');
+  Future<http.Response> forexRates(String base) async {
+    var url = Uri.parse('https://api.exchangerate.host/latest?base=$base');
     var res = await http.get(url);
 
     return res;

@@ -57,27 +57,29 @@ class _CommentSheetState extends State<CommentSheet> {
       mainAxisSize: MainAxisSize.min,
       children: [
         'Comments'.text.bold.size(24).make(),
-        StreamBuilder(
-          stream: _postMethods.getPostComments(widget.postId),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasData) {
-              List<CommentModel> comments = [];
+        Flexible(
+          child: StreamBuilder(
+            stream: _postMethods.getPostComments(widget.postId),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData) {
+                List<CommentModel> comments = [];
 
-              for (var element in snapshot.data!.docs) {
-                CommentModel _comment = CommentModel.fromMap(
-                    element.data() as Map<String, dynamic>);
+                for (var element in snapshot.data!.docs) {
+                  CommentModel _comment = CommentModel.fromMap(
+                      element.data() as Map<String, dynamic>);
 
-                comments.add(_comment);
+                  comments.add(_comment);
+                }
+
+                return CommentsListWidget(
+                  comments: comments,
+                );
               }
 
-              return CommentsListWidget(
-                comments: comments,
-              );
-            }
-
-            return 'No Comments Yet.'.text.size(20).make().pSymmetric(v: 10);
-          },
-        ).pSymmetric(v: 10),
+              return 'No Comments Yet.'.text.size(20).make().pSymmetric(v: 10);
+            },
+          ).pSymmetric(v: 10),
+        ),
         TextFormField(
           decoration: InputDecoration(
             // focusedBorder: const OutlineInputBorder(
@@ -95,7 +97,7 @@ class _CommentSheetState extends State<CommentSheet> {
             hintText: 'Write a Comment ...',
             labelStyle: const TextStyle(color: Vx.black),
           ),
-          maxLength: 250,
+          maxLength: 100,
           minLines: 1,
           maxLines: 3,
           controller: _commentController,

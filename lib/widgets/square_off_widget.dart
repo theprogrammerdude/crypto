@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:crypto_plus/methods/api.dart';
 import 'package:crypto_plus/methods/auth_methods.dart';
 import 'package:crypto_plus/methods/db_methods.dart';
 import 'package:crypto_plus/models/market_model.dart';
@@ -21,13 +24,14 @@ class SquareOffWidget extends StatefulWidget {
 }
 
 class _SquareOffWidgetState extends State<SquareOffWidget> {
+  final API _api = API();
   final DbMethods _dbMethods = DbMethods();
   final AuthMethods _authMethods = AuthMethods();
 
   final GlobalKey<SlideActionState> _key = GlobalKey();
 
   TextEditingController? _coinController;
-
+  num rate = 0;
   UserModel? _user;
 
   @override
@@ -35,6 +39,12 @@ class _SquareOffWidgetState extends State<SquareOffWidget> {
     _dbMethods.getUserData(_authMethods.getUid()).listen((event) {
       _user = UserModel.fromMap(event.data() as Map<String, dynamic>);
       // print(_user);
+    });
+
+    _api.convertRate(widget.coinData.quoteMarket).then((value) {
+      Map<String, dynamic> convertData = jsonDecode(value.body);
+
+      rate = convertData['result'];
     });
 
     _coinController =
@@ -46,12 +56,12 @@ class _SquareOffWidgetState extends State<SquareOffWidget> {
   squareOff(num coins) {
     if (widget.trade.trade == 'buy') {
       _dbMethods.squareOff(widget.trade, widget.coinData, _authMethods.getUid(),
-          coins, coins * widget.trade.buy, 'buy');
+          coins, coins * widget.trade.buy * rate, 'buy');
 
       _dbMethods.deleteTrade(_authMethods.getUid(), widget.trade.transactionId);
 
       _dbMethods.updateUserOnSquareOff(
-          _user!, coins * num.parse(widget.coinData.buy));
+          _user!, coins * num.parse(widget.coinData.buy) * rate);
 
       Navigator.pop(context);
       showTopSnackBar(
@@ -62,12 +72,12 @@ class _SquareOffWidgetState extends State<SquareOffWidget> {
       );
     } else {
       _dbMethods.squareOff(widget.trade, widget.coinData, _authMethods.getUid(),
-          coins, coins * widget.trade.sell, 'sell');
+          coins, coins * widget.trade.buy * rate, 'sell');
 
       _dbMethods.deleteTrade(_authMethods.getUid(), widget.trade.transactionId);
 
       _dbMethods.updateUserOnSquareOff(
-          _user!, coins * num.parse(widget.coinData.sell));
+          _user!, coins * num.parse(widget.coinData.sell) * rate);
 
       Navigator.pop(context);
       showTopSnackBar(

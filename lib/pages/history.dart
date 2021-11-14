@@ -4,6 +4,9 @@ import 'package:crypto_plus/methods/db_methods.dart';
 import 'package:crypto_plus/models/history_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:settings_ui/settings_ui.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class History extends StatefulWidget {
@@ -16,6 +19,158 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   final AuthMethods _authMethods = AuthMethods();
   final DbMethods _dbMethods = DbMethods();
+
+  openBottomSheet(HistoryModel history) {
+    showBarModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            (history.baseMarket + '/' + history.quoteMarket)
+                .text
+                .uppercase
+                .bold
+                .size(24)
+                .make(),
+            DateFormat.yMMMd()
+                .add_jm()
+                .format(DateTime.fromMillisecondsSinceEpoch(history.at))
+                .toString()
+                .text
+                .gray500
+                .make()
+                .objectCenterRight(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                history.trade == 'buy'
+                    ? history.trade.text.bold.capitalize.blue600.size(18).make()
+                    : history.trade.text.bold.capitalize.red600.size(18).make(),
+                history.trade == 'buy'
+                    ? Row(
+                        children: [
+                          history.quoteMarket == 'inr'
+                              ? const FaIcon(
+                                  FontAwesomeIcons.rupeeSign,
+                                  color: Vx.blue600,
+                                ).pSymmetric(h: 5)
+                              : history.quoteMarket == 'usdt'
+                                  ? const FaIcon(
+                                      FontAwesomeIcons.dollarSign,
+                                      color: Vx.blue600,
+                                    ).pSymmetric(h: 5)
+                                  : const FaIcon(
+                                      FontAwesomeIcons.btc,
+                                      color: Vx.blue600,
+                                    ).pSymmetric(h: 5),
+                          history.buy
+                              .toString()
+                              .text
+                              .bold
+                              .capitalize
+                              .blue600
+                              .size(18)
+                              .make(),
+                        ],
+                      )
+                    : Row(
+                        children: [
+                          history.quoteMarket == 'inr'
+                              ? const FaIcon(
+                                  FontAwesomeIcons.rupeeSign,
+                                  color: Vx.red600,
+                                ).pSymmetric(h: 5)
+                              : history.quoteMarket == 'usdt'
+                                  ? const FaIcon(
+                                      FontAwesomeIcons.dollarSign,
+                                      color: Vx.red600,
+                                    ).pSymmetric(h: 5)
+                                  : const FaIcon(
+                                      FontAwesomeIcons.btc,
+                                      color: Vx.red600,
+                                    ).pSymmetric(h: 5),
+                          history.sell
+                              .toString()
+                              .text
+                              .bold
+                              .capitalize
+                              .red600
+                              .size(18)
+                              .make(),
+                        ],
+                      ),
+              ],
+            ).pSymmetric(v: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                'Profit/Loss'.text.bold.size(18).make(),
+                history.trade == 'buy'
+                    ? (history.prevSell < history.buy
+                        ? ((history.prevSell - history.buy) * history.coins)
+                            .toStringAsFixed(3)
+                            .text
+                            .bold
+                            .red600
+                            .size(18)
+                            .make()
+                        : ((history.buy - history.prevSell) * history.coins)
+                            .toStringAsFixed(3)
+                            .text
+                            .bold
+                            .blue600
+                            .size(18)
+                            .make())
+                    : (history.prevBuy < history.sell
+                        ? ((history.prevBuy - history.sell) * history.coins)
+                            .toStringAsFixed(3)
+                            .text
+                            .bold
+                            .blue600
+                            .size(18)
+                            .make()
+                        : ((history.sell - history.prevBuy) * history.coins)
+                            .toStringAsFixed(3)
+                            .text
+                            .bold
+                            .red600
+                            .size(18)
+                            .make()),
+              ],
+            ),
+            Flexible(
+              child: SettingsList(
+                shrinkWrap: true,
+                backgroundColor: Colors.white,
+                sections: [
+                  SettingsSection(
+                    tiles: [
+                      SettingsTile(
+                        title: 'High',
+                        subtitle: history.high.toString(),
+                        leading: const Icon(Icons.arrow_upward),
+                      ),
+                      SettingsTile(
+                        title: 'Low',
+                        subtitle: history.low.toString(),
+                        leading: const Icon(Icons.arrow_downward),
+                      ),
+                      SettingsTile(
+                        title: 'Volume',
+                        subtitle: history.volume.toString(),
+                        leading: const FaIcon(FontAwesomeIcons.coins),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ).p16();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +191,7 @@ class _HistoryState extends State<History> {
             itemCount: history.length,
             itemBuilder: (context, index) {
               return GestureDetector(
-                // onTap: () => openBottomSheet(history[index]),
+                onTap: () => openBottomSheet(history[index]),
                 child: Card(
                   shape: history[index].trade == 'buy'
                       ? const Border(
@@ -189,7 +344,7 @@ class _HistoryState extends State<History> {
           );
         }
 
-        return Image.asset('assets/404.png').centered();
+        return 'No Orders Yet.'.text.size(18).make().centered();
       },
     );
   }

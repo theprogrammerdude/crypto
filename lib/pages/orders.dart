@@ -169,7 +169,7 @@ class _OrdersState extends State<Orders> {
           );
         }
 
-        return Image.asset('assets/404.png').centered();
+        return 'No Orders Yet.'.text.size(18).make().centered();
       },
     );
   }
